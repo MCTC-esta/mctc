@@ -5,6 +5,13 @@ require("dotenv").config();
 
 const app = express();
 
+///////
+const bodyParser = require("body-parser");
+app.use(express.static(__dirname + "/../client/dist"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+///////
+
 //add middelware as body parser to read JSON object
 
 app.use(express.json());

@@ -6,7 +6,9 @@ import Home from "./Component/pages/Home";
 import Login from "./Component/auth/Login";
 import Register from "./Component/auth/Register";
 import UserContext from "./context/UserContext";
+import Search from "./Component/auth/displayHosts"
 import "./Style.css";
+
 
 export default function App() {
     const [userData, setUserData] = useState({
@@ -75,6 +77,7 @@ export default function App() {
                     <Route exact path="/" component={Home} />
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
+                    <Route path="/preferences" component={Search} />
                 </Switch>
             </UserContext.Provider>
         </BrowserRouter>

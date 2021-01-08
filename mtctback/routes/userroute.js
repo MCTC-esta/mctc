@@ -3,6 +3,8 @@ const User = require("../database/user.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+
+
 router.post("/register", async (req, res) => {
     console.log(req.body)
     try {
@@ -53,7 +55,6 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-    console.log(req.body)
     try {
         const { email, password } = req.body;
         if (!email || !password)
@@ -110,5 +111,54 @@ router.get("/" , async (req,res) => {
     const user = await User.findById(req.user);
         res.json(user);
 })
+
+
+///// i added this 
+
+router.post('/preferences', async function(req, res) {
+    let conditions = Object.entries(req.body).filter(x=>(x[1]!=='')).filter(x=>(x[0]!=='currentpage'))
+    var pageNo = req.body.currentpage
+    //console.log('req.body',req.body)
+    // console.log('currentpage',pageNo)
+    // console.log('req.body obj',Object.entries(req.body))
+    // console.log('conditions',conditions)
+    let query = {
+      status:"Host"
+    }
+    for(var ele of conditions) {
+      query[ele[0]] = ele[1]
+    }
+    
+    var size = 5
+    let pages = {}
+    pages.skip =  size * pageNo
+    pages.limit = size
+  
+  ////////////////
+  let numberOfRecords = 0
+  await User.find(query, function(err, docs) {
+    if (err){
+      console.log('err') 
+    } else {
+      let data = docs.map(doc => doc._doc)
+      //console.log(data)
+      numberOfRecords = data.length
+    }
+  });
+  ////////////////
+  await User.find(query,{},pages, function(err, docs) {
+    if (err){
+      res.send(err);
+    } else {
+      let data = docs.map(doc => doc._doc)
+      //console.log(data)
+      response = {"error" : false,"message" : [data,numberOfRecords]}
+      res.send(response)
+    }
+  });
+  })
+
+  
+  ///////
 
 module.exports = router;
