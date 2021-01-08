@@ -1,70 +1,185 @@
-import React, {useState, useContext} from 'react';
-import Axios from "axios";
-import UserContext from "../../context/UserContext"
-import { useHistory } from 'react-router-dom';
+import React from "react";
+//import ReactDOM from "react-dom";
+import $ from "jquery";
+import Results from "./results.js"
 
-export default function Register() {
 
-const [email, setEmail] = useState();
-const [password, setPassword] = useState();
-const [repeatpassword, setRepeatPassword] = useState();
-const [username, setUserName] = useState();
-const [gender, setGender] = useState();
-const [age, setAge] = useState();
-const [space, setSpace] = useState();
-const [status, setStatus] = useState();
-const [picture, setPicture] = useState();
-const [nationality, setNationality] = useState();
-const [contact, setContact] = useState();
-const [profile, setProfile] = useState();
+class Search extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      age: "",
+      selectedOption:'',
+      filtred : [],
+      numberOfRecords:0,
+      currentPage :0,
+      nationality : '',
+      selectedGender:''
+    };
+    this.onValueChange =  this.onValueChange.bind(this)
+    this.onValueChangeSpace =  this.onValueChangeSpace.bind(this)
+    this.handleSubmit =  this.handleSubmit.bind(this)
+    this.pagePrev =  this.pagePrev.bind(this)
+    this.pageNext =  this.pageNext.bind(this)
+    this.onValueChangeGender =  this.onValueChangeGender.bind(this)
+  }
 
-const {setUserData} = useContext(UserContext);
-const history = useHistory();
+  componentDidMount(){
+    $.post("http://localhost:4000/users/preferences",
+      {
+       "currentpage": this.state.currentPage,
+     },
+     (res) => {
+             console.log('server response: ',res.message[0])
+             this.setState({
+               filtred : res.message[0],
+               numberOfRecords : res.message[1]
+             })
+             }
+     )
+  }
+  
+  handleSubmit() {
+    console.log(this.state.selectedOption+'/'+this.state.age)
+    $.post("http://localhost:4000/users/preferences",
+     {
+      //"currentpage": this.state.currentPage,
+      "gender": this.state.selectedGender,
+      "age": this.state.age,
+      "nationality": this.state.nationality,
+      "space": this.state.selectedOption
+    },
+    (res) => {
+            console.log('server response: ',res.message[0])
+            this.setState({
+              filtred : res.message[0],
+              numberOfRecords : res.message[1],
+              currentPage :0              
+            })
+            }
+    )
+  }
 
-const submit = async (e) => {
-    e.preventDefault();
-    const newUser = { email, password, repeatpassword, username, gender, age, space, status, picture, nationality,contact, profile };
-    const resp = await Axios.post("http://localhost:4000/users/register", newUser);
-    console.log(resp)
-    alert(resp.data)
-    const loginRes = await Axios.post("http://localhost:4000/users/login", {email, password,});
-    setUserData({
-        token:loginRes.data.token,
-        user:loginRes.data.user
+  onValueChange(event) {
+    console.log(event.target.value)
+    this.setState({
+      [event.target.name] : event.target.value,
     });
-        localStorage.setItem("auth-token", loginRes.data.token);
-        history.push("/");
-};
+    //console.log(this.state[event.target.name])
+  }
 
+  onValueChangeGender(event) {
+    console.log(event.target.value)
+    this.setState({
+        selectedGender: event.target.value,
+    });
+  }
 
+  onValueChangeSpace(event) {
+    console.log(event.target.value)
+    this.setState({
+        selectedOption: event.target.value,
+    });
+  }
+
+  pagePrev() {
+    //console.log('prev button clicked')
+    //console.log('currentPage',this.state.currentPage)
+    if(this.state.currentPage > 0 ){
+      $.post("http://localhost:4000/users/preferences",
+      {  
+       "currentpage": this.state.currentPage -1 ,
+        "gender": this.state.selectedGender,
+      "age": this.state.age,
+      "nationality": this.state.nationality,
+      "space": this.state.selectedOption
+     },
+     (res) => {
+             console.log('this is it')
+             this.setState({
+               filtred : res.message[0],
+               currentPage : this.state.currentPage - 1
+             })
+             }
+     )
+    }
+  }
+
+  pageNext() {
+    //console.log('next button clicked')
+    //console.log('currentPage before click',this.state.currentPage)
+    //console.log('number of records',this.state.numberOfRecords)
+    //console.log('number of pages',Math.ceil(this.state.numberOfRecords/2))
+
+    if(this.state.currentPage+1 < Math.ceil(this.state.numberOfRecords/5)){
+      $.post("http://localhost:4000/users/preferences",
+      {
+       "currentpage": this.state.currentPage +1 ,
+       "gender": this.state.selectedGender,
+       "age": this.state.age,
+       "nationality": this.state.nationality,
+       "space": this.state.selectedOption
+     },
+     (res) => {
+             console.log('server response:', res.message[0])
+             this.setState({
+               filtred : res.message[0],
+               currentPage : this.state.currentPage + 1
+             })
+             }
+     )
+    }
+  }
+
+  render() {
     return (
-        <div>
-            <h2>Register</h2>
-            <form className="form" onSubmit={submit}>
-                <label htmlFor= "register-email">Email</label>
-                <input id="register-email" type="email" onChange={(e) => setEmail(e.target.value)}/>
+      <div>
+        <h4>your preferences!</h4>
 
-                <label htmlFor= "register-password">Password</label>
-                <input id="register-password" type="password" onChange={(e) => setPassword(e.target.value)}/>
-                <input type="password" placeholder="repeat password" onChange={(e) => setRepeatPassword(e.target.value)} />
 
-                <label htmlFor= "register-username">User Name</label>
-                <input id="register-username" type="text" onChange={(e) => setUserName(e.target.value)}/>
+        <form >
+          <fieldset>
+            <legend>Gender preferences:</legend>
+            <label htmlFor="male">Male</label>
+        <input type="radio"
+              value="Male"
+              checked={this.state.selectedGender === "Male"}
+              onChange={this.onValueChangeGender}/>
+        <label htmlFor="female">Female</label>
+        <input type="radio"
+              value="Female"
+              checked={this.state.selectedGender === "Female"}
+              onChange={this.onValueChangeGender}/>
+          </fieldset>
+          <br/>
 
-                <label htmlFor= "register-gender">Male</label>
-                <input id="register-gender" type="radio" value="Male" checked={gender === 'Male'} onChange={(e) => setGender(e.target.value)}/>
+         
+          <fieldset>
+            <legend>Age preferences</legend>
+            <label >Age:  </label>
+            <input type="number" id="age" name="age" min="18" max="50" onChange={this.onValueChange} />
+          </fieldset>
 
-                <label htmlFor= "register-gender">Female</label>
-                <input id="register-gender" type="radio" value="Female" checked={gender === 'Female'} onChange={(e) => setGender(e.target.value)}/>
-                
+          <br/>
+          <fieldset>
+            <legend>Space preferences:</legend>
+            <label htmlFor="Shared">Shared</label>
+        <input type="radio"
+              value="Shared"
+              checked={this.state.selectedOption === "Shared"}
+              onChange={this.onValueChangeSpace}/>
+        <label htmlFor="Private">Private</label>
+        <input type="radio"
+              value="Private"
+              checked={this.state.selectedOption === "Private"}
+              onChange={this.onValueChangeSpace}/>
+          </fieldset>
+          <br/>
 
-                <label htmlFor= "register-age">Age</label>
-                <input id="register-age" type="number" min="18" max="60" onChange={(e) => setAge(e.target.value)}/>
-
-                <fieldset>
+          <fieldset>
           <legend>Nationality preferences</legend>
-          <label htmlFor= "register-nationality">Nationality</label>
-          <select onChange={(e) => setNationality(e.target.value)}>
+          <label >Nationality:  </label>
+          <select name="nationality" onChange={this.onValueChange}>
             <option value="">-- select one --</option>
             <option value="afghan">Afghan</option>
             <option value="albanian">Albanian</option>
@@ -260,33 +375,22 @@ const submit = async (e) => {
             <option value="zimbabwean">Zimbabwean</option>
           </select>
           </fieldset>
-
-                <label htmlFor= "register-space">Shared Room</label>
-                <input id="register-space" type="radio" value="Shared" checked={space === 'Shared'} onChange={(e) => setSpace(e.target.value)}/>
-
-                <label htmlFor= "register-space">Private Room</label>
-                <input id="register-space" type="radio" value="Private" checked={space === 'Private'} onChange={(e) => setSpace(e.target.value)}/>
-
-                <label htmlFor= "register-status">Host</label>
-                <input id="register-status" type="radio" value="Host" checked={status === 'Host'} onChange={(e) => setStatus(e.target.value)}/>
-
-                <label htmlFor= "register-status">Guest</label>
-                <input id="register-status" type="radio" value="Guest" checked={status === 'Guest'} onChange={(e) => setStatus(e.target.value)}/>
-
-                <label htmlFor= "register-contact">Contact Me On</label>
-                <input id="register-contact" type="text" onChange={(e) => setContact(e.target.value)}/>
-
-                <label htmlFor= "register-profile">Profile Picture</label>
-                <input id="register-profile" type="text" onChange={(e) => setProfile(e.target.value)}/>
-
-                <label htmlFor= "register-picture">Room picture</label>
-                <input id="register-picture" type="text" onChange={(e) => setPicture(e.target.value)}/>
-
-                
-
-                <input type="submit" value="Register" />
-
-            </form>
-        </div>
+          <br/>
+          
+          
+        </form>
+        <fieldset>
+          <input type="submit" value="Display results" onClick={this.handleSubmit} />
+        </fieldset>
+        <Results matches={this.state.filtred} next={this.pageNext} prev={this.pagePrev} tot = {this.state.numberOfRecords} current = {this.state.currentPage}/>
+      </div>
     )
+  }
 }
+
+
+export default Search;
+
+//ReactDOM.render(<Search />, document.getElementById("app"));
+
+
