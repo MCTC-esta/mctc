@@ -16,6 +16,7 @@ export default function Login() {
         e.preventDefault();
         const loginUser = { email, password };
         const loginRes = await Axios.post("http://localhost:4000/users/login", loginUser);
+        alert(loginRes.data)
         setUserData({
             token:loginRes.data.token,
             user:loginRes.data.user

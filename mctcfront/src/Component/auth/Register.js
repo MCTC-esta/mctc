@@ -15,13 +15,15 @@ const [space, setSpace] = useState();
 const [status, setStatus] = useState();
 const [picture, setPicture] = useState();
 const [nationality, setNationality] = useState();
+const [contact, setContact] = useState();
+const [profile, setProfile] = useState();
 
 const {setUserData} = useContext(UserContext);
 const history = useHistory();
 
 const submit = async (e) => {
     e.preventDefault();
-    const newUser = { email, password, repeatpassword, username, gender, age, space, status, picture, nationality };
+    const newUser = { email, password, repeatpassword, username, gender, age, space, status, picture, nationality,contact, profile };
     const resp = await Axios.post("http://localhost:4000/users/register", newUser);
     console.log(resp)
     alert(resp.data)
@@ -50,10 +52,10 @@ const submit = async (e) => {
                 <input id="register-username" type="text" onChange={(e) => setUserName(e.target.value)}/>
 
                 <label htmlFor= "register-gender">Male</label>
-                <input id="register-gender" type="radio" value="Male" onChange={(e) => setGender(e.target.value)}/>
+                <input id="register-gender" type="radio" value="Male" checked={gender === 'Male'} onChange={(e) => setGender(e.target.value)}/>
 
                 <label htmlFor= "register-gender">Female</label>
-                <input id="register-gender" type="radio" value="Female" onChange={(e) => setGender(e.target.value)}/>
+                <input id="register-gender" type="radio" value="Female" checked={gender === 'Female'} onChange={(e) => setGender(e.target.value)}/>
                 
 
                 <label htmlFor= "register-age">Age</label>
@@ -260,18 +262,24 @@ const submit = async (e) => {
           </fieldset>
 
                 <label htmlFor= "register-space">Shared Room</label>
-                <input id="register-space" type="radio" value="Shared" onChange={(e) => setSpace(e.target.value)}/>
+                <input id="register-space" type="radio" value="Shared" checked={space === 'Shared'} onChange={(e) => setSpace(e.target.value)}/>
 
                 <label htmlFor= "register-space">Private Room</label>
-                <input id="register-space" type="radio" value="Private" onChange={(e) => setSpace(e.target.value)}/>
+                <input id="register-space" type="radio" value="Private" checked={space === 'Private'} onChange={(e) => setSpace(e.target.value)}/>
 
                 <label htmlFor= "register-status">Host</label>
-                <input id="register-status" type="radio" value="Host" onChange={(e) => setStatus(e.target.value)}/>
+                <input id="register-status" type="radio" value="Host" checked={status === 'Host'} onChange={(e) => setStatus(e.target.value)}/>
 
                 <label htmlFor= "register-status">Guest</label>
-                <input id="register-status" type="radio" value="Guest" onChange={(e) => setStatus(e.target.value)}/>
+                <input id="register-status" type="radio" value="Guest" checked={status === 'Guest'} onChange={(e) => setStatus(e.target.value)}/>
 
-                <label htmlFor= "register-picture">Picture</label>
+                <label htmlFor= "register-contact">Contact Me On</label>
+                <input id="register-contact" type="text" onChange={(e) => setContact(e.target.value)}/>
+
+                <label htmlFor= "register-profile">Profile Picture</label>
+                <input id="register-profile" type="text" onChange={(e) => setProfile(e.target.value)}/>
+
+                <label htmlFor= "register-picture">Room picture</label>
                 <input id="register-picture" type="text" onChange={(e) => setPicture(e.target.value)}/>
 
                 

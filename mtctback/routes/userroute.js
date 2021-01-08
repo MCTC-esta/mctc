@@ -4,10 +4,11 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 router.post("/register", async (req, res) => {
+    console.log(req.body)
     try {
-        let { email, password, repeatpassword, UserName, gender, age, space, status, picture,nationality } = req.body;
-
-        if (!email || !password || !repeatpassword || !gender || !age || !space || !status || !nationality)
+        let { email, password, repeatpassword, username, gender, age, space, status, picture,nationality, contact, profile } = req.body;
+        console.log(username)
+        if (!email || !password || !repeatpassword || !gender || !age || !space || !status || !nationality || !contact)
             return res.send("not all fields have been entered" );
 
         if (password.length < 8)
@@ -20,8 +21,10 @@ router.post("/register", async (req, res) => {
         if (existingUser)
             return res.send("email already exists " );
 
-        if (!UserName)
-            UserName = email
+        if (!username){
+            username = email
+            //console.log(username)
+        }
 
         const salt = await bcrypt.genSalt();
         const passwordHash = await bcrypt.hash(password, salt);
@@ -29,13 +32,15 @@ router.post("/register", async (req, res) => {
         const newUser = new User({
             email,
             password: passwordHash,
-            UserName,
+            username,
             gender,
             age,
             space,
             status,
             picture,
-            nationality
+            nationality,
+            contact,
+            profile
         });
         const savedUser = await newUser.save();
         res.json(savedUser);
@@ -48,30 +53,33 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+    console.log(req.body)
     try {
         const { email, password } = req.body;
         if (!email || !password)
-            return res.status(400).send("not all fields have been entered");
+            return res.send("not all fields have been entered");
         const user = await User.findOne({ email: email });
         if (!user)
-            return res.status(400).send("email don't exist");
+            return res.send("email don't exist");
 
         const matchPassword = await bcrypt.compare(password, user.password);
         if (!matchPassword)
-            return res.status(400).send("invalid password" );
+            return res.send("invalid password" );
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
         res.json({
             token,
             user: {
                 id: user._id,
-                UserName: user.UserName,
+                username: user.username,
                 email: user.email,
                 gender: user.gender,
                 age: user.age,
                 space: user.space,
                 status: user.status,
-                picture: user.picture
+                picture: user.picture,
+                contact: user.contact,
+                profile: user.profile
             }
         })
 
