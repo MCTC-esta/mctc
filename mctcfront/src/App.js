@@ -9,7 +9,12 @@ import UserContext from "./context/UserContext";
 import Search from "./Component/auth/displayHosts"
 import "./Style.css";
 import Hero from "../src/Component/Navbar/Hero";
+import InfoSection from "../src/Component/Navbar/InfoSection";
 import {SliderData} from "../src/data/SliderData";
+import {InfoData} from "../src/data/InfoData";
+import Cards from "../src/Component/Navbar/Cards";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 export default function App() {
@@ -83,7 +88,11 @@ export default function App() {
                     <Route path="/register" component={Register} />
                     <Route path="/preferences" component={Search} />
                     <Hero slides={SliderData}/>
+                    
                 </Switch>
+                <Cards/>
+                <InfoSection {...InfoData}/>
+                
                 
             </UserContext.Provider>
 
