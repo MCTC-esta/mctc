@@ -8,6 +8,8 @@ import Register from "./Component/auth/Register";
 import UserContext from "./context/UserContext";
 import Search from "./Component/auth/displayHosts"
 import "./Style.css";
+import Hero from "../src/Component/Navbar/Hero";
+import {SliderData} from "../src/data/SliderData";
 
 
 export default function App() {
@@ -75,12 +77,19 @@ export default function App() {
                 <Header />
                 <Switch>
                     <Route exact path="/" component={Home} />
+                    </Switch>
+                    <Switch>
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path="/preferences" component={Search} />
+                    <Hero slides={SliderData}/>
                 </Switch>
+                
             </UserContext.Provider>
+
         </BrowserRouter>
+        
+
     </>
 
 }

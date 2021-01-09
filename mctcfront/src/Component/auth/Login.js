@@ -26,16 +26,17 @@ export default function Login() {
     };
 
     return (
-        <div>
-        <h2>Log in</h2>
-        <form className="form" onSubmit={submit}>
+        <div className="main1" Style={{"align":"center"}}>
+        <h2 className="sign1" Style={{"align":"center"}}>Log in</h2>
+
+        <form className="form1" onSubmit={submit}>
             <label htmlFor= "login-email">Email</label>
-            <input id="login-email" type="email" onChange={(e) => setEmail(e.target.value)}/>
+            <input className="un1" Style={{"align":"center"}} type="email" onChange={(e) => setEmail(e.target.value)}/>
 
             <label htmlFor= "login-password">Password</label>
-            <input id="login-password" type="password" onChange={(e) => setPassword(e.target.value)}/>
+            <input className="pass1" Style={{"align":"center"}} type="password" onChange={(e) => setPassword(e.target.value)}/>
             
-            <input type="submit" value="Log-in" />
+            <input className="submit1" type="submit" value="Log-in" />
 
         </form>
     </div>
