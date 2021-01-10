@@ -25,56 +25,23 @@ button, input[type="submit"] {
 
 h1,h2,h3,h4,h5,h6,p,ul,ol {
     margin: 1em 0;
+    
+    
 }
 
 body{
-    font-family: "Roboto", sans-serif;
+    background-color: #F3EBF6;
+        font-family: 'Ubuntu', sans-serif;
 }
 
-.form label,
-.form input {
-    display: block;
-
-}
-
-.form input{
-    margin-bottom: 1rem;
-}
-
-.form label{
-    margin-bottom: 0.2rem;
-}
-
-.form input[type="text"],
-.form input[type="email"],
-.form input[type="number"],
-.form input[type="password"]{
-    width: 100%;
-    padding: 0.1rem;
-    border: 1px solid #c2c2c2;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    font-size: 1.1rem;
-}
-
-.form input:focus{
-    border: 1px solid #50a4e9;
-    box-shadow: inset 0px 0px 5px  rgba(38, 142, 228, 0.5);
-    outline: none;
-}
-
-.form input[type="submit"]{
-    padding: 0.2rem 0.5rem;
-    font-size: 0.9rem;
-    border: 1px solid #094679;
-    background-color: #78dae7;
-    border-radius: 10px;
-}
+.form {
+    padding-top: 40px;
+} 
 
 
 #header {
     height: 60px;
-    background-color: tomato;
+    background-color: black;
     justify-content: space-between;
     align-items: center;
     display: flex;
@@ -83,6 +50,7 @@ body{
 #header .title{
     padding: 0 1rem;
     margin: 0;
+   color: white;
 }
 
 #header .auth{
@@ -91,12 +59,196 @@ body{
 }
 
 #header .auth button{
-    background-color: red;
+    background-color: black;
     padding: 0 1rem;
     font-size: 1.1rem;
     color: white;
-}
+} 
 
 #header .auth button:hover{
-    background-color: rgb(236, 55, 27);
+    background-color: gray;
+} 
+
+.main1 {
+    background-color: #FFFFFF;
+    width: 400px;
+    height: 600px;
+    margin: 7em auto;
+    border-radius: 1.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
 }
+.sign1 {
+    padding-top: 40px;
+    color: #8c55aa;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+    text-align : center;
+}
+
+.un1 {
+
+    width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    margin-left: 46px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: 'Ubuntu', sans-serif;
+    }
+
+    .pass1 {
+        width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+margin-bottom: 50px;
+margin-left: 46px;
+text-align: center;
+margin-bottom: 27px;
+font-family: 'Ubuntu', sans-serif;
+}
+.un1:focus, .pass1:focus {
+    border: 2px solid rgba(0, 0, 0, 0.18) !important;
+    
+}
+
+.submit1 {
+    cursor: pointer;
+      border-radius: 5em;
+      color: rgb(241, 234, 234);
+    background-color: red;
+      border: 0;
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      font-family: 'Ubuntu', sans-serif;
+      margin-left: 35%;
+      font-size: 13px;
+      box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+      text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+      color: #E1BEE7;
+      text-decoration: none
+  }
+  .form {
+    padding-top: 40px;
+}
+
+label {
+    display: block;
+    width: 150px;
+    text-align: right;
+    margin-bottom: 10px;
+  }
+
+  .main {
+    background-color: #FFFFFF;
+    width: 600px;
+    height: 1430px;
+    margin: 7em auto;
+    border-radius: 1.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
+.sign {
+    padding-top: 40px;
+    color: #8C55AA;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+    text-align : center;
+}
+
+.un {
+    
+    width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-left: 30px;
+    /* text-align: center; */
+    margin-bottom: 27px;
+    font-family: 'Ubuntu', sans-serif;
+    }
+
+    .pass {
+        width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+margin-bottom: 50px;
+margin-left: 46px;
+text-align: center;
+margin-bottom: 27px;
+font-family: 'Ubuntu', sans-serif;
+}
+.un:focus, .pass:focus {
+    border: 2px solid rgba(0, 0, 0, 0.18) !important;
+    
+}
+
+.submit {
+    cursor: pointer;
+      border-radius: 5em;
+      color: rgb(241, 234, 234);
+      background-color: purple;
+      border: 0;
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      font-family: 'Ubuntu', sans-serif;
+      margin-left: 35%;
+      font-size: 13px;
+      box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+      text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+      color: #E1BEE7;
+      text-decoration: none
+  }
+
+label {
+    display: flex;
+    width: 150px;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-left: 150px;
+  }
+
+  .up{
+
+    position: relative;
+  }

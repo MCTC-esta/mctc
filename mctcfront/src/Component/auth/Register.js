@@ -38,31 +38,32 @@ const submit = async (e) => {
 
 
     return (
-        <div>
-            <h2>Register</h2>
-            <form className="form" onSubmit={submit}>
+        <div className="main">
+            <h2 className="sign">Register</h2>
+            <form className="form" onSubmit={submit} style={{"text-align":"center", "display": "block"}}>
                 <label htmlFor= "register-email">Email</label>
-                <input id="register-email" type="email" onChange={(e) => setEmail(e.target.value)}/>
+                <input className="un" type="email" onChange={(e) => setEmail(e.target.value)} style={{"position":"center"}}/>
 
                 <label htmlFor= "register-password">Password</label>
-                <input id="register-password" type="password" onChange={(e) => setPassword(e.target.value)}/>
-                <input type="password" placeholder="repeat password" onChange={(e) => setRepeatPassword(e.target.value)} />
+                <input className="pass"  type="password" onChange={(e) => setPassword(e.target.value)}/>
+                <input className="pass"  placeholder="repeat password" onChange={(e) => setRepeatPassword(e.target.value)} />
 
                 <label htmlFor= "register-username">User Name</label>
-                <input id="register-username" type="text" onChange={(e) => setUserName(e.target.value)}/>
+                <input className="un" type="text" onChange={(e) => setUserName(e.target.value)}/>
 
                 <label htmlFor= "register-gender">Male</label>
-                <input id="register-gender" type="radio" value="Male" checked={gender === 'Male'} onChange={(e) => setGender(e.target.value)}/>
+                <input className="un" type="radio" value="Male" checked={gender === 'Male'} onChange={(e) => setGender(e.target.value)}/>
 
                 <label htmlFor= "register-gender">Female</label>
-                <input id="register-gender" type="radio" value="Female" checked={gender === 'Female'} onChange={(e) => setGender(e.target.value)}/>
+                <input className="un" type="radio" value="Female" checked={gender === 'Female'} onChange={(e) => setGender(e.target.value)}/>
                 
 
                 <label htmlFor= "register-age">Age</label>
-                <input id="register-age" type="number" min="18" max="60" onChange={(e) => setAge(e.target.value)}/>
+                <input className="un" type="number" min="18" max="60" onChange={(e) => setAge(e.target.value)}/>
 
-                <fieldset>
+                
           <legend>Nationality preferences</legend>
+          <br/>
           <label htmlFor= "register-nationality">Nationality</label>
           <select onChange={(e) => setNationality(e.target.value)}>
             <option value="">-- select one --</option>
@@ -259,32 +260,33 @@ const submit = async (e) => {
             <option value="zambian">Zambian</option>
             <option value="zimbabwean">Zimbabwean</option>
           </select>
-          </fieldset>
+      <br/>
+      <br/>
 
                 <label htmlFor= "register-space">Shared Room</label>
-                <input id="register-space" type="radio" value="Shared" checked={space === 'Shared'} onChange={(e) => setSpace(e.target.value)}/>
+                <input className="un" type="radio" value="Shared" checked={space === 'Shared'} onChange={(e) => setSpace(e.target.value)}/>
 
                 <label htmlFor= "register-space">Private Room</label>
-                <input id="register-space" type="radio" value="Private" checked={space === 'Private'} onChange={(e) => setSpace(e.target.value)}/>
+                <input className="un" type="radio" value="Private" checked={space === 'Private'} onChange={(e) => setSpace(e.target.value)}/>
 
                 <label htmlFor= "register-status">Host</label>
-                <input id="register-status" type="radio" value="Host" checked={status === 'Host'} onChange={(e) => setStatus(e.target.value)}/>
+                <input className="un" type="radio" value="Host" checked={status === 'Host'} onChange={(e) => setStatus(e.target.value)}/>
 
                 <label htmlFor= "register-status">Guest</label>
-                <input id="register-status" type="radio" value="Guest" checked={status === 'Guest'} onChange={(e) => setStatus(e.target.value)}/>
+                <input className="un" type="radio" value="Guest" checked={status === 'Guest'} onChange={(e) => setStatus(e.target.value)}/>
 
                 <label htmlFor= "register-contact">Contact Me On</label>
-                <input id="register-contact" type="text" onChange={(e) => setContact(e.target.value)}/>
+                <input className="un" type="text" onChange={(e) => setContact(e.target.value)}/>
 
                 <label htmlFor= "register-profile">Profile Picture</label>
-                <input id="register-profile" type="text" onChange={(e) => setProfile(e.target.value)}/>
+                <input className="un" type="text" onChange={(e) => setProfile(e.target.value)}/>
 
                 <label htmlFor= "register-picture">Room picture</label>
-                <input id="register-picture" type="text" onChange={(e) => setPicture(e.target.value)}/>
+                <input className="un" type="text" onChange={(e) => setPicture(e.target.value)}/>
 
                 
 
-                <input type="submit" value="Register" />
+                <input className="submit"  type="submit" value="Register" />
 
             </form>
         </div>
