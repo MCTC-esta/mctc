@@ -10,34 +10,35 @@ function Cards() {
         <div className='cards__wrapper'>
           <ul className='cards__items'>
             <CardItem
-              src='../images/img-2.jpg'
-              text='Explore the hidden waterfall deep inside the Amazon Jungle'
+              src='images/italy.jpg'
+              text='The surface of Venice is constantly metamorphosing [and] painting Venice is almost like being a restorer, peeling off the layers to find the picture after picture underneath.'
               label='+2500 hosts'
               path='/hosts'
             />
             <CardItem
-              src='../images/img-2.jpg'
-              text='Travel through the Islands of Bali in a Private Cruise'
+              src='images/canada.jpg'
+              text='Canada is the essence of not being. Not English, not American, it is the mathematics of not being. -Mike Myer'
               label='+1000 hosts'
               path='/hosts'
             />
           </ul>
           <ul className='cards__items'>
             <CardItem
-              src='../images/img-3.jpg'
-              text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'
+              src='images/swiss.jpg'
+              text='Switzerland is a country where very few things begin, but many things end.'
               label='+6800'
               path='/hosts'
             />
             <CardItem
-              src='images/img-4.jpg'
-              text='Experience Football on Top of the Himilayan Mountains'
+              src='images/california.jpg'
+              text='You could travel the world, but nothing comes close to the golden coast.'
               label='+500 hosts'
               path='/hosts'
             />
             <CardItem
-              src='../images/img-8.jpg'
-              text='Ride through the Sahara Desert on a guided camel tour'
+              src='images/brazil.jpg'
+              text='Brazil was, is, and will be in fashion.
+              – Gilberto Gil'
               label='+7000 hosts'
               path='/hosts'
             />

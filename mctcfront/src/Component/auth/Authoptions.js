@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from "react-router-dom";
-import UserContext from "../../context/UserContext"
+import UserContext from "../../context/UserContext";
+import '../Footer.css';
 
 
 
@@ -29,8 +30,31 @@ export default function Authoptions() {
             {
                 userData.user ? (
                     <>
-                <button onClick={logout}>Log out</button>
-                <button onClick={displayHosts}>Display Hosts</button>
+               <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                <li className='nav-item'>
+                  <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+                    Home
+                  </Link>
+                </li>
+                <li className='nav-item'>
+                  <Link
+                    to='/Login'
+                    className='nav-links'
+                    onClick={closeMobileMenu}
+                  >
+                    Sign in
+                  </Link>
+                </li>
+                <li>
+              <Link
+                to='/Register'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Sign Up
+              </Link>
+            </li>
+              </ul>
                 </>
                  ):(
             <>
