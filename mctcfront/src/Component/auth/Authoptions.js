@@ -34,8 +34,6 @@ export default function Authoptions() {
                 </>
                  ):(
             <>
-            <button onClick={register}>Register</button>
-            <button onClick={login}>Log in</button>
                 </>
                 )}
         </div>

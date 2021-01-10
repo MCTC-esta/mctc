@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import Axios from "axios";
-import Header from "./Component/Navbar/Header";
 import Home from "./Component/pages/Home";
 import Login from "./Component/auth/Login";
 import Register from "./Component/auth/Register";
 import UserContext from "./context/UserContext";
 import Search from "./Component/auth/displayHosts"
-import "./Style.css";
+import "./App.css";
+import Navbar from "./Component/Navbar";
 
 
 export default function App() {
@@ -70,9 +70,9 @@ export default function App() {
     }, []);
 
     return <>
-        <BrowserRouter>
+        <Router>
             <UserContext.Provider value={{ userData, setUserData }}>
-                <Header />
+                <Navbar/>
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route path="/login" component={Login} />
@@ -80,7 +80,7 @@ export default function App() {
                     <Route path="/preferences" component={Search} />
                 </Switch>
             </UserContext.Provider>
-        </BrowserRouter>
+        </Router>
     </>
 
 }

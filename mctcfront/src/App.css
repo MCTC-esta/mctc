@@ -1,0 +1,81 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'PT Sans', sans-serif;
+  }
+  
+  .form-inputs label,
+.form-inputs {
+    display: block;
+
+}
+.form-input-btn {
+  width: 80%;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    rgb(39, 176, 255) 0%,
+    rgb(0, 232, 236) 100%
+  );
+  outline: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+}
+
+
+.form-input-btn:hover {
+  cursor: pointer;
+  background: linear-gradient(
+    90deg,
+    rgb(39, 143, 255) 0%,
+    rgb(12, 99, 250) 100%
+  );
+  transition: all 0.4s ease-out;
+}
+
+
+  .Gforms{
+  background-color: rgb(36, 36, 36);
+  color: white;
+}
+  
+  .form-inputs{
+    position:relative;
+    margin-bottom:25px;
+  }
+  .form-inputs label{
+    position:absolute;
+    top:0px;
+    left:0px;
+    font-size:16px;
+    color:#fff;	
+    transition: all 0.5s ease-in-out;
+  }
+  .form-inputs input{ 
+    border:0;
+    border-bottom:1px solid #555;  
+    background:transparent;
+    width:100%;
+    padding:8px 0 5px 0;
+    font-size:16px;
+    color:#fff;
+  }
+  .form-inputs input:focus{ 
+   border:none;	
+   outline:none;
+   border-bottom:1px solid #e74c3c;	
+  }
+  
+  .form-inputs input:valid ~ label,
+  .form-inputs input:focus ~ label{
+    top:-12px;
+    font-size:12px;
+    
+  }
+  .Login {
+    display:center ;
+  }

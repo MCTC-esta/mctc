@@ -1,7 +1,16 @@
 import React, {useState, useContext} from 'react';
 import Axios from "axios";
-import UserContext from "../../context/UserContext"
+import UserContext from "../../context/UserContext";
 import { useHistory } from 'react-router-dom';
+import Footer from '../Footer';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import Switch from  '../Switch.js';
+import '../../App.css';
+
 
 export default function Register() {
 
@@ -38,33 +47,55 @@ const submit = async (e) => {
 
 
     return (
-        <div>
+        <div className='Gforms'>
             <h2>Register</h2>
             <form className="form" onSubmit={submit}>
-                <label htmlFor= "register-email">Email</label>
-                <input id="register-email" type="email" onChange={(e) => setEmail(e.target.value)}/>
+            
+                <div class="row mb-3">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                <input type="email" class="form-control"  placeholder="Email" id="colFormLabel" onChange={(e) => setEmail(e.target.value)}/>
+                </div>
+                </div>
 
-                <label htmlFor= "register-password">Password</label>
-                <input id="register-password" type="password" onChange={(e) => setPassword(e.target.value)}/>
-                <input type="password" placeholder="repeat password" onChange={(e) => setRepeatPassword(e.target.value)} />
-
-                <label htmlFor= "register-username">User Name</label>
-                <input id="register-username" type="text" onChange={(e) => setUserName(e.target.value)}/>
-
-                <label htmlFor= "register-gender">Male</label>
-                <input id="register-gender" type="radio" value="Male" checked={gender === 'Male'} onChange={(e) => setGender(e.target.value)}/>
-
-                <label htmlFor= "register-gender">Female</label>
-                <input id="register-gender" type="radio" value="Female" checked={gender === 'Female'} onChange={(e) => setGender(e.target.value)}/>
+                <div class="row mb-3">
+                <label for="colFormLabel" class="col-sm-2 col-form-label">Password</label>
+                <input   class="form-control"  id="colFormLabel" type="password" onChange={(e) => setPassword(e.target.value)}/>
+                <label  for="colFormLabel" class="col-sm-2 col-form-label">Repeat Password</label>
+                <input type="password"   class="form-control" id="colFormLabel" placeholder="repeat password" onChange={(e) => setRepeatPassword(e.target.value)} />
+                </div>
                 
+                <div class="col-sm-3">
+                <label class="visually-hidden" for="specificSizeInputGroupUsername">Username</label>
+                <div class="input-group">
+                <div class="input-group-text">@</div>
+                <input   type="text" class="form-control" id="specificSizeInputGroupUsername" onChange={(e) => setUserName(e.target.value)}/>
+                </div>
+                </div>
+                <FormControl component="fieldset">
+  <FormLabel component="legend">Gender</FormLabel>
+  <RadioGroup aria-label="gender" name="gender1" onChange={(e) => setGender(e.target.value)}>
+    <FormControlLabel value="female" control={<Radio />} checked={gender === 'Female'} label="Female" />
+    <FormControlLabel value="male" control={<Radio />} checked={gender === 'Male'} label="Male" />
+    <FormControlLabel value="disabled" disabled control={<Radio />} label="(Disabled option)" />
+  </RadioGroup>
+ </FormControl>
+
+
+
+
+
+
+
 
                 <label htmlFor= "register-age">Age</label>
                 <input id="register-age" type="number" min="18" max="60" onChange={(e) => setAge(e.target.value)}/>
 
                 <fieldset>
           <legend>Nationality preferences</legend>
-          <label htmlFor= "register-nationality">Nationality</label>
-          <select onChange={(e) => setNationality(e.target.value)}>
+           <div class="col-sm-3">
+          <label class="visually-hidden" for="specificSizeSelect">Nationality</label>
+          <select  class="form-select" id="specificSizeSelect" onChange={(e) => setNationality(e.target.value)}>
             <option value="">-- select one --</option>
             <option value="afghan">Afghan</option>
             <option value="albanian">Albanian</option>
@@ -259,19 +290,19 @@ const submit = async (e) => {
             <option value="zambian">Zambian</option>
             <option value="zimbabwean">Zimbabwean</option>
           </select>
+          </div>
           </fieldset>
 
-                <label htmlFor= "register-space">Shared Room</label>
-                <input id="register-space" type="radio" value="Shared" checked={space === 'Shared'} onChange={(e) => setSpace(e.target.value)}/>
+          <label htmlFor= "register-space">Shared Room</label>
+          <Switch />
+          <label htmlFor= "register-space">Private Room</label>
+          <Switch />
 
-                <label htmlFor= "register-space">Private Room</label>
-                <input id="register-space" type="radio" value="Private" checked={space === 'Private'} onChange={(e) => setSpace(e.target.value)}/>
 
-                <label htmlFor= "register-status">Host</label>
-                <input id="register-status" type="radio" value="Host" checked={status === 'Host'} onChange={(e) => setStatus(e.target.value)}/>
-
-                <label htmlFor= "register-status">Guest</label>
-                <input id="register-status" type="radio" value="Guest" checked={status === 'Guest'} onChange={(e) => setStatus(e.target.value)}/>
+        <label htmlFor= "register-status">Host</label>
+         <Switch />
+        <label htmlFor= "register-status">Guest</label>
+        <Switch/>
 
                 <label htmlFor= "register-contact">Contact Me On</label>
                 <input id="register-contact" type="text" onChange={(e) => setContact(e.target.value)}/>
@@ -283,10 +314,15 @@ const submit = async (e) => {
                 <input id="register-picture" type="text" onChange={(e) => setPicture(e.target.value)}/>
 
                 
-
-                <input type="submit" value="Register" />
+                <button className='form-input-btn' type='submit'>
+                 Sign up
+                </button>
+                <span className='form-input-login'>
+                Already have an account? Login <a href='#'>here</a>
+                </span>
 
             </form>
+            <Footer />
         </div>
     )
 }
