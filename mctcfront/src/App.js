@@ -14,6 +14,7 @@ import {SliderData} from "../src/data/SliderData";
 import {InfoData} from "../src/data/InfoData";
 import Cards from "../src/Component/Navbar/Cards";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Footer from "../src/Component/Navbar/Footer";
 
 
 
@@ -92,10 +93,11 @@ export default function App() {
                 </Switch>
                 <Cards/>
                 <InfoSection {...InfoData}/>
+              
                 
                 
             </UserContext.Provider>
-
+            <Footer/>
         </BrowserRouter>
         
 
