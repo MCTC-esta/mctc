@@ -2,8 +2,9 @@ import React, {useState, useContext} from 'react';
 import Axios from "axios";
 import UserContext from "../../context/UserContext"
 import { useHistory } from 'react-router-dom';
+import '../../Style.css';
 
-export default function Login() {
+const Login = function () {
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -16,7 +17,9 @@ export default function Login() {
         e.preventDefault();
         const loginUser = { email, password };
         const loginRes = await Axios.post("http://localhost:4000/users/login", loginUser);
-        alert(loginRes.data)
+        
+        console.log('user info:',loginRes.data)
+        alert('welcome')
         setUserData({
             token:loginRes.data.token,
             user:loginRes.data.user
@@ -26,7 +29,7 @@ export default function Login() {
     };
 
     return (
-        <div>
+        <div className="login--form">
         <h2>Log in</h2>
         <form className="form" onSubmit={submit}>
             <label htmlFor= "login-email">Email</label>
@@ -41,3 +44,6 @@ export default function Login() {
     </div>
     )
 }
+
+
+export default Login

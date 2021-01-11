@@ -6,15 +6,20 @@ import Home from "./Component/pages/Home";
 import Login from "./Component/auth/Login";
 import Register from "./Component/auth/Register";
 import UserContext from "./context/UserContext";
+import Edit from "./Component/auth/Edit";
+import Search from "./Component/auth/displayHosts";
 import "./Style.css";
+
 
 export default function App() {
     const [userData, setUserData] = useState({
         token: undefined,
         user: undefined,
+        id:'',
     });
 
     useEffect(() => {
+        var test ='' ;
         const checkLogIn = async () => {
             let token = localStorage.getItem("auth-token");
             if (token === null) {
@@ -35,7 +40,9 @@ export default function App() {
 
             axios(config)
                 .then(function (response) {
-                    console.log(JSON.stringify(response.data));
+                    console.log(JSON.stringify(response.data.user.id));
+                    test = JSON.stringify(response.data.user.id);
+                    console.log('this is the id ',test)
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -67,14 +74,16 @@ export default function App() {
         checkLogIn();
     }, []);
 
-    return <>
+    return  <>
         <BrowserRouter>
-            <UserContext.Provider value={{ userData, setUserData }}>
+            <UserContext.Provider value={{ userData, setUserData}}>
                 <Header />
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
+                    <Route path="/preferences" component={Search} />
+                    <Route path="/edit" component={Edit} />
                 </Switch>
             </UserContext.Provider>
         </BrowserRouter>
