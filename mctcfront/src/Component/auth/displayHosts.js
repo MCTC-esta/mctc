@@ -4,6 +4,10 @@ import $ from "jquery";
 import Results from "./results.js"
 
 
+import "../../../../mctcfront/src/filterStyle.css";
+
+
+
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -133,6 +137,7 @@ class Search extends React.Component {
 
   render() {
     return (
+
       <div>
         <h4>your preferences!</h4>
 
@@ -150,10 +155,29 @@ class Search extends React.Component {
               value="Female"
               checked={this.state.selectedGender === "Female"}
               onChange={this.onValueChangeGender}/>
+
+      <div className='container'>
+      <div  style={{'marginLeft':'200px','marginRight':'200px'}} >
+      <h3  style={{"color":"DarkGreen"}}>Filter by preferences!</h3>
+        <form >
+          <fieldset style={{ "border":"2px solid green" }}><br/>
+            <legend  style={{"marginLeft": "8px","color":"darkRed"  }}>Filter by gender: </legend> 
+        <input type="radio"
+              value="Male"
+              checked={this.state.selectedGender === "Male"}
+              onChange={this.onValueChangeGender} style={{"marginLeft": "8px"  }}/>
+              <label htmlFor="male" style={{"color":"MediumBlue"  }}> Male</label><br/>
+        <input type="radio"
+              value="Female"
+              checked={this.state.selectedGender === "Female"}
+              onChange={this.onValueChangeGender} style={{"marginBottom": "8px","marginLeft": "8px"  }}/>
+              <label htmlFor="female"  style={{"color":"MediumBlue"  }}> Female</label>
+
           </fieldset>
           <br/>
 
          
+
           <fieldset>
             <legend>Age preferences</legend>
             <label >Age:  </label>
@@ -180,6 +204,35 @@ class Search extends React.Component {
           <legend>Nationality preferences</legend>
           <label >Nationality:  </label>
           <select name="nationality" onChange={this.onValueChange}>
+
+          <fieldset style={{ "border":"2px solid green" }}><br/>
+            <legend  style={{"marginLeft": "8px","color":"darkRed"  }}>Filter by age: </legend>
+            <label  style={{"marginLeft": "8px" ,"color":"MediumBlue" }}>Age:  </label>
+            <input type="number" id="age" name="age" min="18" max="50" onChange={this.onValueChange} style={{"marginBottom": "5px"}}/>
+          </fieldset>
+
+          <br/>
+          <fieldset style={{ "border":"2px solid green" }}><br/>
+            <legend  style={{"marginLeft": "8px","color":"darkRed"  }}>Filter by room space type: </legend>
+        <input type="radio"
+              value="Shared"
+              checked={this.state.selectedOption === "Shared"}
+              onChange={this.onValueChangeSpace}
+              style={{"marginLeft": "8px"  }}/>
+               <label htmlFor="Shared" style={{"color":"MediumBlue"  }}> Shared</label><br/>
+        <input type="radio"
+              value="Private"
+              checked={this.state.selectedOption === "Private"}
+              onChange={this.onValueChangeSpace} style={{"marginBottom": "8px","marginLeft": "8px"  }}/>
+               <label htmlFor="Private" style={{"color":"MediumBlue"  }} > Private</label>
+          </fieldset>
+          <br/>
+
+          <fieldset style={{ "border":"2px solid green" }} ><br/>
+          <legend  style={{"marginLeft": "8px","color":"darkRed"  }}>Filter by host nationality: </legend>
+          <label ></label>
+          <select name="nationality" onChange={this.onValueChange} style={{"marginBottom": "5px" ,"marginLeft": "8px" }}>
+
             <option value="">-- select one --</option>
             <option value="afghan">Afghan</option>
             <option value="albanian">Albanian</option>
@@ -376,6 +429,7 @@ class Search extends React.Component {
           </select>
           </fieldset>
           <br/>
+
           
           
         </form>
@@ -392,5 +446,19 @@ class Search extends React.Component {
 export default Search;
 
 //ReactDOM.render(<Search />, document.getElementById("app"));
+
+
+        </form>
+          <input type="button" value="Display filter results" onClick={this.handleSubmit} style={{"borderRadius": "5px","fontSize": "15px","padding": "12px 12px" }}/>
+          <br/>
+          <br/>
+        <Results matches={this.state.filtred} next={this.pageNext} prev={this.pagePrev} tot = {this.state.numberOfRecords} current = {this.state.currentPage}/>
+      </div>
+      </div>
+    )
+  }
+}
+export default Search;
+
 
 

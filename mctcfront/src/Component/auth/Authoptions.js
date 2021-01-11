@@ -32,7 +32,9 @@ export default function Authoptions() {
                     <>
                 <button onClick={logout}>Log out</button>
                 <button onClick={displayHosts}>Display Hosts</button>
+
                 <Link id="button" to={'/edit'} >Edit</Link>
+
                 </>
                  ):(
             <>

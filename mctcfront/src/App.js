@@ -6,9 +6,21 @@ import Home from "./Component/pages/Home";
 import Login from "./Component/auth/Login";
 import Register from "./Component/auth/Register";
 import UserContext from "./context/UserContext";
+
 import Edit from "./Component/auth/Edit";
 import Search from "./Component/auth/displayHosts";
+
+import Search from "./Component/auth/displayHosts"
+
 import "./Style.css";
+import Hero from "../src/Component/Navbar/Hero";
+import InfoSection from "../src/Component/Navbar/InfoSection";
+import {SliderData} from "../src/data/SliderData";
+import {InfoData} from "../src/data/InfoData";
+import Cards from "../src/Component/Navbar/Cards";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 
 
 export default function App() {
@@ -80,13 +92,27 @@ export default function App() {
                 <Header />
                 <Switch>
                     <Route exact path="/" component={Home} />
+                    </Switch>
+                    <Switch>
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path="/preferences" component={Search} />
+
                     <Route path="/edit" component={Edit} />
+
+                    <Hero slides={SliderData}/>
+                    
+
                 </Switch>
+                <Cards/>
+                <InfoSection {...InfoData}/>
+                
+                
             </UserContext.Provider>
+
         </BrowserRouter>
+        
+
     </>
 
 }
