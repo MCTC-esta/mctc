@@ -15,6 +15,10 @@ ul {
     margin-left: 1.5rem;
     list-style: none;
 }
+.login--form {
+    background-image: url("./Component/auth/alejandra-cifre-gonzalez-ylyn5r4vxcA-unsplash.jpg");
+    background-size: cover;
+}
 
 button, input[type="submit"] {
     border: none;
@@ -34,9 +38,52 @@ body{
         font-family: 'Ubuntu', sans-serif;
 }
 
+
+.form label,
+.form input {
+    display: block;
+
+}
+
+.form input{
+    margin-bottom: 1rem;
+}
+
+.form label{
+    margin-bottom: 0.2rem;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="number"],
+.form input[type="password"],
+.form input[type="text"]{
+    width: 100%;
+    padding: 0.1rem;
+    border: 1px solid #c2c2c2;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    font-size: 1.1rem;
+}
+
+.form input:focus{
+    border: 1px solid #50a4e9;
+    box-shadow: inset 0px 0px 5px  rgba(38, 142, 228, 0.5);
+    outline: none;
+}
+
+.form input[type="submit"]{
+    padding: 0.2rem 0.5rem;
+    font-size: 0.9rem;
+    border: 1px solid #094679;
+    background-color: #78dae7;
+    border-radius: 10px;
+}
+
 .form {
     padding-top: 40px;
 } 
+
 
 
 #header {
@@ -66,6 +113,10 @@ body{
 } 
 
 #header .auth button:hover{
+
+    background-color: rgb(236, 55, 27);
+}
+
     background-color: gray;
 } 
 
@@ -252,3 +303,4 @@ label {
 
     position: relative;
   }
+

@@ -53,7 +53,9 @@ router.post("/register", async (req, res) => {
     }
 
 });
-
+///////
+var thisId = undefined
+///////
 router.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -67,7 +69,11 @@ router.post("/login", async (req, res) => {
         if (!matchPassword)
             return res.send("invalid password" );
 
+            else{
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+        console.log('connected id',user._id)
+        thisId = user._id
+        console.log('thisId',thisId)
         res.json({
             token,
             user: {
@@ -84,10 +90,45 @@ router.post("/login", async (req, res) => {
             }
         })
 
+        }
+        
+
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
+//////skan
+router.post('/editprofile', async (req, res) => {
+    console.log("request body:",req.body);
+    console.log("type of thisId",typeof(thisId));
+    console.log("thisId",thisId);
+
+    //var connectedId = await User.findById(thisId);
+    // console.log("connectedId",connectedId);
+    let updated = Object.entries(req.body).filter(x=>x[1]!=='')
+    // console.log("updated",updated)
+    let query = {};
+    for(var ele of updated){
+        query[ele[0]] = ele[1]
+    }
+    // console.log('query',query);
+
+    var user_id = thisId; 
+    console.log('user_id',user_id);
+
+    User.findByIdAndUpdate(user_id, query, 
+                            function (err, docs) { 
+    if (err){ 
+        console.log(err) 
+    } 
+    else{ 
+        console.log("Updated User : ", docs); 
+    } 
+}); 
+
+    res.send('connectedId');
+    
+})
 
 router.post ("/tokenIsValid", async (req,res) => {
     try{

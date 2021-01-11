@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import { useHistory } from "react-router-dom";
-import UserContext from "../../context/UserContext"
+import { useHistory , Link } from "react-router-dom";
+import UserContext from "../../context/UserContext";
+ 
 
 
 
@@ -31,6 +32,9 @@ export default function Authoptions() {
                     <>
                 <button onClick={logout}>Log out</button>
                 <button onClick={displayHosts}>Display Hosts</button>
+
+                <Link id="button" to={'/edit'} >Edit</Link>
+
                 </>
                  ):(
             <>

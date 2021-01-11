@@ -1,6 +1,17 @@
 
 import React from "react";
 
+
+const Results = (props) => (
+    <div>
+        <br/>
+    <div> Page {props.current+1} </div>
+          <div>
+              <button onClick = {props.prev}>prev</button>
+              <button onClick = {props.next}>next</button>
+          </div>
+       {props.tot === 0 ? <h3>no records found</h3> : <h3>{props.tot} records found</h3> }
+
 const Results = (props) => {
     const total = props.tot
     return (
@@ -19,10 +30,27 @@ const Results = (props) => {
           </div>
           </fieldset>
           <br/>
+
     <div>
     {
     props.matches.map((match,index) => {
         return (
+
+            <div key={index}>
+                <h2> Contact: </h2>
+                <h4>name: {match.username}</h4>
+                <h4>gender: {match.gender}</h4>
+                <h4>age: {match.age}</h4>
+                <h4>nationality: {match.nationality}</h4>
+                <h4>space: {match.space}</h4>
+                <h4>photo:</h4>
+                <img src={match.profile} alt="BigCo Inc. logo"/>
+                <h4>room photo:</h4>
+                <img src={match.picture} alt="BigCo Inc. logo"/>
+                <h4>contact: {match.contact}</h4>
+                <h4>status: {match.status}</h4>
+                <p>-------------------------------------------------------------</p>
+
             <div key={index} >
                 <fieldset style={{ "border":"2px solid green" ,'marginBottom':'15px' }}>
                 <h2 style={{"color":"DarkGreen"  }}> <u>Potential host information :</u> </h2>
@@ -48,11 +76,21 @@ const Results = (props) => {
                 </div>
                 </div>
                 </fieldset>
+
             </div>
         )
     })}
   </div>
   <br/>
+
+    <div> Page {props.current+1} </div>
+          <div>
+              <button onClick = {props.prev}>prev</button>
+              <button onClick = {props.next}>next</button>
+          </div>
+  </div>
+  );
+
   <fieldset  style={{"marginBottom": "15px","border":"2px solid green"  }}>
   <div style={{"marginTop": "5px","marginBottom": "5px" }}><span style={{"marginRight":"22px","fontSize": "15px"}} >Page {props.current+1}/{Math.ceil(props.tot / 5)}</span> 
           <br/>
@@ -67,6 +105,7 @@ const Results = (props) => {
 
 }
   ;
+
   export default Results;
 
 
